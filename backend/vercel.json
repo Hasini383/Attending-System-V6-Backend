@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/students/profile", "dest": "api/students.js" },
+    { "src": "/api/students/download-qr-code", "dest": "api/students.js" },
+    { "src": "/api/students/search-qr", "dest": "api/students.js" },
+    { "src": "/api/students/mark-attendance", "dest": "api/students.js" },
+    { "src": "/api/students/attendance-history", "dest": "api/students.js" },
+    { "src": "/api/students/dashboard-stats", "dest": "api/students.js" },
+    { "src": "/api/students/(.*)", "dest": "api/students.js" },
+
+    { "src": "/api/admin/register", "dest": "api/admin.js" },
+    { "src": "/api/admin/login", "dest": "api/admin.js" },
+    { "src": "/api/admin/logout", "dest": "api/admin.js" },
+    { "src": "/api/admin/forgot-password", "dest": "api/admin.js" },
+    { "src": "/api/admin/reset-password/(.*)", "dest": "api/admin.js" },
+    { "src": "/api/admin/update-password", "dest": "api/admin.js" },
+    { "src": "/api/admin/profile", "dest": "api/admin.js" },
+    { "src": "/api/admin/me", "dest": "api/admin.js" },
+    { "src": "/api/admin/students", "dest": "api/admin.js" },
+    { "src": "/api/admin/students/all", "dest": "api/admin.js" },
+    { "src": "/api/admin/students/scanned-today", "dest": "api/admin.js" },
+    { "src": "/api/admin/students/(.*)/qr-code", "dest": "api/admin.js" },
+    { "src": "/api/admin/attendance/(.*)", "dest": "api/admin.js" },
+    { "src": "/api/admin/reports/(.*)", "dest": "api/admin.js" },
+    { "src": "/api/admin/messages/(.*)", "dest": "api/admin.js" },
+    { "src": "/api/admin/whatsapp/(.*)", "dest": "api/admin.js" },
+    { "src": "/api/admin/bulk-import", "dest": "api/admin.js" },
+    { "src": "/api/admin/(.*)", "dest": "api/admin.js" },
+
+    { "src": "/api/reports/dailyAttendanceReport", "dest": "api/reports.js" },
+    { "src": "/api/reports/weeklyAttendanceReport", "dest": "api/reports.js" },
+    { "src": "/api/reports/monthlyAttendanceReport", "dest": "api/reports.js" },
+    { "src": "/api/reports/summary", "dest": "api/reports.js" },
+    { "src": "/api/reports/(.*)/preview", "dest": "api/reports.js" },
+    { "src": "/api/reports/(.*)", "dest": "api/reports.js" },
+
+    { "src": "/api/whatsapp/(.*)", "dest": "api/admin.js" },
+    { "src": "/api/health", "dest": "api/health.js" },
+
+    { "src": "/api/public/(.*)", "dest": "public/$1" },
+
+
+    { "src": "/(.*)", "dest": "api/health.js" }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "regions": ["sin1"],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization, mongodb-date-format, preserve-mongodb-format, time-format" }
+      ]
+    }
+  ]
+}
